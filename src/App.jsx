@@ -1,7 +1,13 @@
 import React from 'react';
 
+import AppHeader from 'components/AppHeader';
+
 function App() {
-  return <h1>Hello world!</h1>;
+  return (
+    <>
+      <AppHeader />
+    </>
+  );
 }
 
 export default App;

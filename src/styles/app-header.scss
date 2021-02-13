@@ -1,0 +1,31 @@
+@import './shared/colors.scss';
+@import './shared/fonts.scss';
+
+.app-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $purple-haze;
+
+  &__main-menu-button {
+    position: absolute;
+    left: 1vw;
+    height: 2.4rem;
+    width: 2.4rem;
+
+    opacity: 0.75;
+    background: no-repeat center/55% url(~assets/images/menu.svg);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
+    font-size: 2.35rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+  }
+}

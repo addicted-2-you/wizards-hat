@@ -14,6 +14,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/public'),
     filename: '[name].bundle.js',
+    assetModuleFilename: 'images/[hash][ext][query]',
+    publicPath: '',
   },
   module: {
     rules: [
@@ -25,14 +27,13 @@ module.exports = {
       { test: /\.html$/, use: ['html-loader'] },
       {
         test: /\.(sc|sa|c)ss$/,
-        use: [
-          'style-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: 'asset/resource' },
     ],
   },
   plugins: [
