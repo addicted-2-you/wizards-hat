@@ -4,14 +4,24 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx"],
+        "extensions": [".js", ".jsx", ".ts"],
         "paths": ["./src"]
       }
     }
   },
   "rules": {
     "prettier/prettier": ["error"],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "globals": {
     "document": true,

@@ -1,0 +1,5 @@
+export enum EAppActionTypes {
+  HIDE_MENU = 'APP@HIDE_MENU',
+  SHOW_MENU = 'APP@SHOW_MENU',
+  TOGGLE_MENU = 'APP@TOGGLE_MENU',
+}

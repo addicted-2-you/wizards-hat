@@ -4,6 +4,9 @@ import express from 'express';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { Provider } from 'react-redux';
+
+import { store } from '../store';
 
 import { addResponseHeaders } from './middlewares';
 
@@ -20,7 +23,11 @@ app.use(express.static(path.resolve(__dirname, 'public'), { index: false }));
 app.use(addResponseHeaders);
 
 app.get('/', (req, resp) => {
-  const client = ReactDOMServer.renderToString(<App />);
+  const client = ReactDOMServer.renderToString(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+  );
 
   readFile(path.resolve(__dirname, './public/index.html'), 'utf8')
     .then((data) => {
