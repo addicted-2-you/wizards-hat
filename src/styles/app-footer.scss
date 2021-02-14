@@ -1,10 +1,13 @@
 @import './shared/mixins.scss';
+@import './shared/colors.scss';
 @import './shared/sizes/constants.scss';
 
 .app-footer {
   @include flex-center-content;
 
   height: $app-footer-height;
+
+  background-color: $pink-floyd;
 
   &__github-link {
     font-size: 1.75rem;

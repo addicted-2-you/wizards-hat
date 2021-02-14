@@ -1,0 +1,7 @@
+@import './shared/sizes/constants.scss';
+
+.game-view {
+  height: calc(100vh - (#{$app-header-height} + #{$app-footer-height}));
+
+  flex-grow: 1;
+}

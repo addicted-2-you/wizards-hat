@@ -6,6 +6,7 @@
   $self: &;
 
   position: absolute;
+  top: $app-header-height;
   height: calc(100vh - (#{$app-header-height} + #{$app-footer-height}));
   width: 100vw;
 
