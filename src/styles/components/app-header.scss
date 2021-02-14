@@ -1,6 +1,6 @@
-@import './shared/colors.scss';
-@import './shared/fonts.scss';
-@import './shared/sizes/constants.scss';
+@import 'styles/shared/colors.scss';
+@import 'styles/shared/fonts.scss';
+@import 'styles/shared/sizes/constants.scss';
 
 .app-header {
   height: $app-header-height;

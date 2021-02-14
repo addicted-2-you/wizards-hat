@@ -1,6 +1,6 @@
-@import './shared/mixins.scss';
-@import './shared/colors.scss';
-@import './shared/sizes/constants.scss';
+@import 'styles/shared/mixins.scss';
+@import 'styles/shared/colors.scss';
+@import 'styles/shared/sizes/constants.scss';
 
 .app-footer {
   @include flex-center-content;

@@ -7,10 +7,14 @@
     "paths": {
       "assets/*": ["./src/assets/*"],
       "components/*": ["./src/components/*"],
+      "containers/*": ["./src/containers/*"],
+      "models/*": ["./src/models/*"],
       "constants/*": ["./src/constants/*"],
       "hocs/*": ["./src/hocs/*"],
       "store": ["./src/store/index.ts"],
-      "store/*": ["./src/store/*"]
+      "store/*": ["./src/store/*"],
+      "styles/*": ["./src/styles/*"],
+      "utils/*": ["./src/utils/*"]
     }
   },
   "include": ["src"],

@@ -1,0 +1,58 @@
+@import 'styles/shared/colors.scss';
+@import 'styles/shared/mixins.scss';
+
+$game-field-cell-size: 2vw;
+$game-field-cell-gap: calc(#{$game-field-cell-size} / 4);
+
+.game-field {
+  $game-field-self: &;
+
+  padding-top: 1.5vw;
+
+  font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
+  font-size: calc(#{$game-field-cell-size} / 2);
+
+  .game-field-x-axis {
+    display: flex;
+
+    &__cell {
+      @include flex-center-content;
+
+      height: $game-field-cell-size;
+      width: $game-field-cell-size;
+
+      &:not(:first-child) {
+        margin-left: $game-field-cell-gap;
+      }
+    }
+  }
+
+  .game-field-row {
+    display: flex;
+
+    #{$game-field-self}__cell {
+      @include flex-center-content;
+
+      height: $game-field-cell-size;
+      width: $game-field-cell-size;
+
+      background-color: $react-blue;
+      border-radius: 5px;
+    }
+
+    #{$game-field-self}__cell:not(:first-child) {
+      margin-left: $game-field-cell-gap;
+    }
+
+    &:not(:first-child) {
+      margin-top: $game-field-cell-gap;
+    }
+
+    .game-field-y-axis__cell {
+      @include flex-center-content;
+
+      height: $game-field-cell-size;
+      width: $game-field-cell-size;
+    }
+  }
+}

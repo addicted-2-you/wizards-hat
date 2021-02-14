@@ -1,0 +1,11 @@
+@import 'styles/shared/sizes/constants.scss';
+
+.game-view {
+  height: calc(100vh - (#{$app-header-height} + #{$app-footer-height}));
+
+  .game-fields {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
