@@ -1,12 +1,15 @@
 @import './shared/colors.scss';
 @import './shared/fonts.scss';
+@import './shared/sizes/constants.scss';
 
 .app-header {
+  height: $app-header-height;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background-color: $purple-haze;
+  background-color: $mistress-night;
 
   &__main-menu-button {
     position: absolute;
@@ -27,5 +30,6 @@
     font-size: 2.35rem;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
+    color: $under-the-sun;
   }
 }

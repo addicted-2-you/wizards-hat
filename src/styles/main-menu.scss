@@ -1,0 +1,54 @@
+@import './shared/colors.scss';
+@import './shared/sizes/constants.scss';
+
+.main-menu {
+  $self: &;
+
+  position: absolute;
+  height: calc(100vh - #{$app-header-height});
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: $under-the-sun;
+  transform: translate(100%);
+  transition: transform ease-in-out 0.4s;
+
+  &__title {
+    font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    color: $mistress-night;
+  }
+
+  .menu-buttons-wrapper {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+
+    .menu-buttons {
+      .menu-button {
+        width: 35vw;
+
+        display: block;
+
+        text-transform: uppercase;
+        font-size: 2rem;
+      }
+
+      .menu-button + .menu-button {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &--active {
+    @extend .main-menu;
+
+    transform: translate(0);
+  }
+}
