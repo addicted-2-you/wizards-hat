@@ -1,11 +1,12 @@
 @import './shared/colors.scss';
+@import './shared/mixins.scss';
 @import './shared/sizes/constants.scss';
 
 .main-menu {
   $self: &;
 
   position: absolute;
-  height: calc(100vh - #{$app-header-height});
+  height: calc(100vh - (#{$app-header-height} + #{$app-footer-height}));
   width: 100vw;
 
   display: flex;
@@ -25,10 +26,9 @@
   }
 
   .menu-buttons-wrapper {
-    display: flex;
+    @include flex-center-content;
+
     flex-grow: 1;
-    justify-content: center;
-    align-items: center;
 
     .menu-buttons {
       .menu-button {
