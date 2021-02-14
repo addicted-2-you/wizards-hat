@@ -1,0 +1,140 @@
+@import 'styles/shared/colors.scss';
+@import 'styles/shared/fonts.scss';
+
+$terminal-font-size: 1vw;
+
+.terminal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  height: 15vw;
+  width: 55vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 5vw;
+
+  overflow: hidden;
+
+  font-family: 'Ubuntu Mono Bold', Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: whitesmoke;
+
+  border-radius: 0.5vw;
+  background-color: $purple-haze;
+  transform: translateY(100%);
+  transition: transform ease-in-out 0.25s;
+
+  .terminal-header {
+    position: relative;
+    height: 3vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $incognito-mode;
+
+    &__button {
+      position: absolute;
+      right: 0.7vw;
+      padding: 0.1vw;
+      height: 1.2vw;
+      width: 1.2vw;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: $terminal-font-size;
+      font-weight: bolder;
+      color: $incognito-mode;
+
+      border: none;
+      border-radius: 100%;
+      opacity: 0.7;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.9;
+      }
+
+      &:active {
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &--close {
+        @extend .terminal-header__button;
+
+        background-color: $rust;
+      }
+    }
+  }
+
+  .input-history {
+    position: relative;
+    bottom: 0;
+    max-height: 5vw;
+    margin: 1vw 0;
+    padding: 0.5vw 0.75vw;
+
+    display: block;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y proximity;
+
+    font-size: $terminal-font-size;
+
+    list-style: none;
+
+    &__item:last-child {
+      scroll-snap-align: end;
+    }
+  }
+
+  .terminal-input-line {
+    padding: 0.5vw 0.75vw;
+
+    display: flex;
+
+    &__login {
+      color: $green-day;
+      font-family: 'Ubuntu Mono Bold', Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: $terminal-font-size;
+
+      &::after {
+        content: ':';
+
+        margin-right: 0.75vw;
+
+        color: whitesmoke;
+      }
+    }
+
+    &__input {
+      color: whitesmoke;
+      font-family: 'Ubuntu Mono Bold', Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: $terminal-font-size;
+
+      flex-grow: 1;
+
+      background-color: $purple-haze;
+      border: none;
+      caret-color: whitesmoke;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &--active {
+    @extend .terminal;
+
+    transform: translateY(0);
+  }
+}

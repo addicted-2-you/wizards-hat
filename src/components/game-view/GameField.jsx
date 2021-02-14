@@ -15,16 +15,14 @@ function GameField(props) {
         <div className="game-field-x-axis__cell" />
         {gameFieldDataByRows.map((item, index) => (
           <div className="game-field-x-axis__cell" key={`x-axis-${index}`}>
-            <span>{index}</span>
+            {index}
           </div>
         ))}
       </div>
 
       {gameFieldDataByRows.map((gameFieldRowData, index) => (
-        <div className="game-field-row">
-          <div className="game-field-y-axis__cell" key={`y-axis-${index}`}>
-            <span>{index}</span>
-          </div>
+        <div className="game-field-row" key={`y-axis-${index}`}>
+          <div className="game-field-y-axis__cell">{index}</div>
 
           {gameFieldRowData.map(({ xCoord, yCoord }) => (
             <div className="game-field__cell" key={`${xCoord}-${yCoord}`}>

@@ -5,11 +5,14 @@
 .app-footer {
   @include flex-center-content;
 
+  position: relative;
+  z-index: 1;
   height: $app-footer-height;
 
   background-color: $pink-floyd;
 
   &__github-link {
     font-size: 1.75rem;
+    text-decoration: none;
   }
 }
