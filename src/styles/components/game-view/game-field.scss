@@ -7,8 +7,6 @@ $game-field-cell-gap: calc(#{$game-field-cell-size} / 4);
 .game-field {
   $game-field-self: &;
 
-  padding-top: 1.5vw;
-
   font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
   font-size: calc(#{$game-field-cell-size} / 2);
 
@@ -38,10 +36,27 @@ $game-field-cell-gap: calc(#{$game-field-cell-size} / 4);
 
       background-color: $react-blue;
       border-radius: 5px;
-    }
 
-    #{$game-field-self}__cell:not(:first-child) {
-      margin-left: $game-field-cell-gap;
+      &:not(:first-child) {
+        margin-left: $game-field-cell-gap;
+      }
+
+      .building {
+        @include flex-center-content;
+
+        height: $game-field-cell-size;
+        width: $game-field-cell-size;
+
+        border-radius: 5px;
+
+        &--count-castle {
+          @extend .building;
+
+          color: whitesmoke;
+
+          background-color: $mistress-night;
+        }
+      }
     }
 
     &:not(:first-child) {

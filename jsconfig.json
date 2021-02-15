@@ -4,6 +4,7 @@
     "strict": true,
     "baseUrl": ".",
     "module": "commonjs",
+    "jsx": "react",
     "paths": {
       "assets/*": ["./src/assets/*"],
       "components/*": ["./src/components/*"],

@@ -1,6 +1,6 @@
 import { GAME_FIELD_SIZE } from 'constants/game.constants';
 
-import { generateEmptyGameField } from 'utils/game.utils';
+import { generateEmptyGameField, generateOwnGameField } from 'utils/game.utils';
 
 import { IGameState } from './game.state-type';
 

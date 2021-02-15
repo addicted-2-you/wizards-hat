@@ -4,7 +4,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "paths": ["./src"]
       }
     }

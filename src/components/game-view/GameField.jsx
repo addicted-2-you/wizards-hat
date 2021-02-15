@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 
 import { GAME_FIELD_SIZE } from 'constants/game.constants';
@@ -24,11 +26,9 @@ function GameField(props) {
         <div className="game-field-row" key={`y-axis-${index}`}>
           <div className="game-field-y-axis__cell">{index}</div>
 
-          {gameFieldRowData.map(({ xCoord, yCoord }) => (
-            <div className="game-field__cell" key={`${xCoord}-${yCoord}`}>
-              {`${xCoord}-${yCoord}`}
-            </div>
-          ))}
+          {gameFieldRowData.map((fieldCell) =>
+            fieldCell.render(`${fieldCell.xCoord}-${fieldCell.yCoord}`),
+          )}
         </div>
       ))}
     </div>

@@ -60,9 +60,7 @@ function Terminal(props) {
           type="button"
           className="terminal-header__button--close"
           onClick={onCloseTerminalClick}
-        >
-          X
-        </button>
+        />
       </div>
 
       <ul className="input-history">
