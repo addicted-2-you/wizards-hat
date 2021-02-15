@@ -1,1 +1,5 @@
-export enum EGameActionTypes {}
+export enum EGameActionTypes {
+  INIT_SINGLE_GAME = 'GAME@INIT_SINGLE_GAME',
+  INIT_OWN_FIELD = 'GAME@INIT_OWN_FIELD',
+  SET_OWN_FIELD = 'GAME@SET_OWN_FIELD',
+}

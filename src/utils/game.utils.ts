@@ -1,7 +1,15 @@
-import { GAME_FIELD_SIZE } from 'constants/game.constants';
+import { COUNT_CASTLE_SIZE, GAME_FIELD_SIZE } from 'constants/game.constants';
 
 import { CCountCastle } from 'models/buildings/CCountCastle';
 import { CFieldCell } from 'models/CFieldCell';
+import { getRandomNumberInInterval } from './math.utils';
+
+function getRandomCell(fieldSize: number, objectHeight = 0, objectWidth = 0): [number, number] {
+  return [
+    getRandomNumberInInterval(0, fieldSize - objectWidth),
+    getRandomNumberInInterval(0, fieldSize - objectHeight),
+  ];
+}
 
 export function generateEmptyGameField(gameFieldSize = GAME_FIELD_SIZE): CFieldCell[] {
   const gameField: CFieldCell[] = [];
@@ -17,18 +25,19 @@ export function generateEmptyGameField(gameFieldSize = GAME_FIELD_SIZE): CFieldC
   return gameField;
 }
 
-export function placeCountCastle(
-  gameField: CFieldCell[],
-  countCastleCell: [number, number],
-): CFieldCell[] {
-  const [xCoord, yCoord] = countCastleCell;
+export function placeCountCastle(gameField: CFieldCell[]): CFieldCell[] {
+  const [xCoord, yCoord] = getRandomCell(
+    Math.sqrt(gameField.length),
+    COUNT_CASTLE_SIZE,
+    COUNT_CASTLE_SIZE,
+  );
 
   return gameField.map((fieldCell) => {
     if (
       fieldCell.xCoord - xCoord >= 0 &&
-      fieldCell.xCoord - xCoord <= 1 &&
+      fieldCell.xCoord - xCoord <= COUNT_CASTLE_SIZE - 1 &&
       fieldCell.yCoord - yCoord >= 0 &&
-      fieldCell.yCoord - yCoord <= 1
+      fieldCell.yCoord - yCoord <= COUNT_CASTLE_SIZE - 1
     ) {
       return new CFieldCell(fieldCell.xCoord, fieldCell.yCoord, new CCountCastle());
     }
@@ -37,9 +46,6 @@ export function placeCountCastle(
   });
 }
 
-export function generateOwnGameField(
-  gameFieldSize = GAME_FIELD_SIZE,
-  countCastleCell: [number, number],
-) {
-  return placeCountCastle(generateEmptyGameField(gameFieldSize), countCastleCell);
+export function generateOwnGameField(gameFieldSize = GAME_FIELD_SIZE) {
+  return placeCountCastle(generateEmptyGameField(gameFieldSize));
 }
