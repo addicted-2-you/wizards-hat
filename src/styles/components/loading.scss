@@ -1,0 +1,29 @@
+@import 'styles/shared/animations.scss';
+
+$loading-size: 30vw;
+
+.loading {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: $loading-size;
+  width: $loading-size;
+  margin: auto;
+  z-index: -1;
+
+  background: no-repeat center/55% url(~assets/images/ouroboros.svg);
+
+  opacity: 0;
+  animation: rotating 2s linear infinite;
+  transition: opacity linear 0.25s;
+
+  &--active {
+    @extend .loading;
+
+    z-index: 0;
+
+    opacity: 1;
+  }
+}

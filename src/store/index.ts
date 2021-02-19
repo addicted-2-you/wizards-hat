@@ -8,7 +8,8 @@ import gameReducer from './reducers/game.reducer';
 import terminalReducer from './reducers/terminal.reducer';
 
 // sagas
-import { watchInitSingleGame } from './sagas/game.saga';
+import { watchOnlineGame, watchInitSingleGame } from './sagas/game.sagas';
+import { watchSpelling } from './sagas/terminal.sagas';
 
 const rootReducer = combineReducers({
   appState: appReducer,
@@ -21,7 +22,12 @@ const rootMiddleware = composeWithDevTools(applyMiddleware(sagaMiddleware));
 
 const store = createStore(rootReducer, rootMiddleware);
 
+// game sagas
 sagaMiddleware.run(watchInitSingleGame);
+sagaMiddleware.run(watchOnlineGame);
+
+// terminal sagas
+sagaMiddleware.run(watchSpelling);
 
 export type TStore = ReturnType<typeof rootReducer>;
 

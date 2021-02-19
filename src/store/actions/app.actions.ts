@@ -12,4 +12,22 @@ export interface IToggleMenu {
   type: EAppActionTypes.TOGGLE_MENU;
 }
 
-export type TAppAction = IHideMenu | IShowMenu | IToggleMenu;
+export interface IShowSpinner {
+  type: EAppActionTypes.SHOW_SPINNER;
+}
+
+export interface IHideSpinner {
+  type: EAppActionTypes.HIDE_SPINNER;
+}
+
+export interface IToggleSpinner {
+  type: EAppActionTypes.TOGGLE_SPINNER;
+}
+
+export type TAppAction =
+  | IHideMenu
+  | IShowMenu
+  | IToggleMenu
+  | IShowSpinner
+  | IHideSpinner
+  | IToggleSpinner;

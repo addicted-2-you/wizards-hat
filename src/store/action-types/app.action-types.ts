@@ -1,5 +1,10 @@
 export enum EAppActionTypes {
+  // main menu
   HIDE_MENU = 'APP@HIDE_MENU',
   SHOW_MENU = 'APP@SHOW_MENU',
   TOGGLE_MENU = 'APP@TOGGLE_MENU',
+  // spinner
+  SHOW_SPINNER = 'APP@SHOW_SPINNER',
+  HIDE_SPINNER = 'APP@HIDE_SPINNER',
+  TOGGLE_SPINNER = 'APP@TOGGLE_SPINNER',
 }

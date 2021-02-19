@@ -8,7 +8,7 @@ module.exports = {
   ...sharedConfig,
 
   target: 'node',
-  entry: './src/server/index.jsx',
+  entry: './src/server/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.js',

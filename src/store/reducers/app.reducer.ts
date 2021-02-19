@@ -12,8 +12,17 @@ export default (state: IAppState = appInitState, action: TAppAction): IAppState 
     }
     case EAppActionTypes.TOGGLE_MENU: {
       const { isMenuVisible } = state;
-
       return { ...state, isMenuVisible: !isMenuVisible };
+    }
+    case EAppActionTypes.SHOW_SPINNER: {
+      return { ...state, isSpinnerVisible: true };
+    }
+    case EAppActionTypes.HIDE_SPINNER: {
+      return { ...state, isSpinnerVisible: false };
+    }
+    case EAppActionTypes.TOGGLE_SPINNER: {
+      const { isSpinnerVisible } = state;
+      return { ...state, isSpinnerVisible: !isSpinnerVisible };
     }
     default: {
       return state;

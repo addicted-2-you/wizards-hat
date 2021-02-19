@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { initSingleGame } from 'store/action-creators/game.action-creators';
+import { initOnlneGame, initSingleGame } from 'store/action-creators/game.action-creators';
 import { selectMenuVisibility } from 'store/selectors/app.selectors';
 
 function getMainMenuClassName(isMenuVisible) {
@@ -13,10 +13,14 @@ function getMainMenuClassName(isMenuVisible) {
 }
 
 function MainMenu(props) {
-  const { isMenuVisible, dispatchInitSingleGame } = props;
+  const { isMenuVisible, dispatchInitSingleGame, dispatchInitOnlineGame } = props;
 
   function onPlaySingleClick() {
     dispatchInitSingleGame();
+  }
+
+  function onPlayOnlineClick() {
+    dispatchInitOnlineGame();
   }
 
   return (
@@ -27,7 +31,7 @@ function MainMenu(props) {
           <button type="button" className="menu-button" onClick={onPlaySingleClick}>
             Play single
           </button>
-          <button type="button" className="menu-button">
+          <button type="button" className="menu-button" onClick={onPlayOnlineClick}>
             Play online
           </button>
           <button type="button" className="menu-button">
@@ -45,6 +49,7 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchInitSingleGame: () => dispatch(initSingleGame()),
+  dispatchInitOnlineGame: () => dispatch(initOnlneGame()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);

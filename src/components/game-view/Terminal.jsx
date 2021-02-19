@@ -4,7 +4,7 @@
 import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 
-import { addToHistory, toggleTerminal } from 'store/action-creators/terminal.action-creators';
+import { castSpell, toggleTerminal } from 'store/action-creators/terminal.action-creators';
 import { selectHistory, selectTerminalVisibility } from 'store/selectors/terminal.selectors';
 
 function getTerminalClassName(isTerminalVisible) {
@@ -17,9 +17,9 @@ function getTerminalClassName(isTerminalVisible) {
 
 function Terminal(props) {
   const { isTerminalVisible, history } = props;
-  const { dispatchToggleTerminal, dispatchAddToHistory } = props;
+  const { dispatchToggleTerminal, dispatchCastSpell } = props;
 
-  const [command, setCommand] = useState('');
+  const [spell, setSpell] = useState('');
 
   const inputRef = useRef();
 
@@ -43,13 +43,13 @@ function Terminal(props) {
       target: { value },
     } = event;
 
-    setCommand(value);
+    setSpell(value);
   }
 
   function onTerminalKeyDown(event) {
     if (event.key === 'Enter') {
-      dispatchAddToHistory(command);
-      setCommand('');
+      dispatchCastSpell(spell);
+      setSpell('');
     }
   }
 
@@ -76,7 +76,7 @@ function Terminal(props) {
         <input
           className="terminal-input-line__input"
           type="text"
-          value={command}
+          value={spell}
           onChange={onTerminalInput}
           onKeyDown={onTerminalKeyDown}
           ref={inputRef}
@@ -93,7 +93,7 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   dispatchToggleTerminal: () => dispatch(toggleTerminal()),
-  dispatchAddToHistory: (command) => dispatch(addToHistory(command)),
+  dispatchCastSpell: (spell) => dispatch(castSpell(spell)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Terminal);

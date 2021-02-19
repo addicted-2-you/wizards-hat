@@ -7,6 +7,15 @@ export const initSingleGame = (): GameActions.IInitSingleGame => ({
   type: EGameActionTypes.INIT_SINGLE_GAME,
 });
 
+export const initOnlneGame = (): GameActions.IInitOnlineGame => ({
+  type: EGameActionTypes.INIT_ONLINE_GAME,
+});
+
+export const makeMove = (move: string): GameActions.IMakeMove => ({
+  type: EGameActionTypes.MAKE_MOVE,
+  move,
+});
+
 export const initOwnField = (): GameActions.IInitOwnField => ({
   type: EGameActionTypes.INIT_OWN_FIELD,
 });
