@@ -9,7 +9,7 @@ import terminalReducer from './reducers/terminal.reducer';
 
 // sagas
 import { watchChangeAppStage } from './sagas/app.sagas';
-import { watchOnlineGame, watchInitSingleGame } from './sagas/game.sagas';
+import { watchOnlineGame, watchInitSingleGame, watchInitOwnField } from './sagas/game.sagas';
 import { watchSpelling } from './sagas/terminal.sagas';
 
 const rootReducer = combineReducers({
@@ -27,6 +27,7 @@ const store = createStore(rootReducer, rootMiddleware);
 sagaMiddleware.run(watchChangeAppStage);
 
 // game sagas
+sagaMiddleware.run(watchInitOwnField);
 sagaMiddleware.run(watchInitSingleGame);
 sagaMiddleware.run(watchOnlineGame);
 

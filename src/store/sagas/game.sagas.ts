@@ -11,9 +11,13 @@ import { generateOwnGameField } from 'utils/game.utils';
 import { createDuplexConnection } from 'utils/socket.utils';
 
 // workers
-function* initSingleGameWorker() {
+function* initGameWorker() {
   const ownField = yield call(generateOwnGameField);
   yield put(setOwnField(ownField));
+}
+
+function* initSingleGameWorker() {
+  yield call(initGameWorker);
   yield put(hideMenu());
 }
 
@@ -25,6 +29,10 @@ function* listeningSocketWorker(channel: EventChannel<unknown>) {
 }
 
 // watchers
+export function* watchInitOwnField() {
+  yield takeEvery(EGameActionTypes.INIT_OWN_FIELD, initGameWorker);
+}
+
 export function* watchInitSingleGame() {
   yield takeEvery(EGameActionTypes.INIT_SINGLE_GAME, initSingleGameWorker);
 }
@@ -35,11 +43,9 @@ export function* watchOnlineGame() {
     yield put(showSpinner());
 
     const { channel, socket } = yield call(createDuplexConnection);
-
     const listeningSocketTask = yield fork(listeningSocketWorker, channel);
 
     const watchingActions = [EGameActionTypes.MAKE_MOVE, EGameActionTypes.LEAVE_ONLINE_GAME];
-
     for (let action = yield take(watchingActions); action; action = yield take(watchingActions)) {
       if (action.type === EGameActionTypes.MAKE_MOVE) {
         socket.emit(ESocketEvents.PLAYER_MOVE, action);
