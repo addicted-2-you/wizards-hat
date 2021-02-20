@@ -9,6 +9,7 @@ import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 
 import { ESocketEvents } from 'constants/ws.events';
+import { EAppStages } from 'constants/EAppStages';
 
 import { CUserConnection } from 'models/CUserConnection';
 
@@ -20,7 +21,6 @@ import { addResponseHeaders } from './middlewares';
 import { readFile } from './utils';
 
 import App from '../App';
-import { EAppStages } from 'constants/EAppStages';
 
 // express stuff
 const PORT = process.env.PORT || 3000;
@@ -73,10 +73,10 @@ io.on('connection', (socket: Socket) => {
 
   sockets[socket.id] = newUser;
 
-  socket.on(ESocketEvents.SEND_MOVE, (data) => {
+  socket.on(ESocketEvents.SEND_SPELL, (data) => {
     console.log('player move', data);
 
-    sockets[socket.id].pair?.socket.emit(ESocketEvents.RECEIVE_MOVE, data);
+    sockets[socket.id].pair?.socket.emit(ESocketEvents.RECEIVE_SPELL, data);
   });
 
   socket.on('disconnect', () => {

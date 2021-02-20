@@ -10,11 +10,6 @@ export interface IInitOnlineGame {
   type: EGameActionTypes.INIT_ONLINE_GAME;
 }
 
-export interface IMakeMove {
-  type: EGameActionTypes.MAKE_MOVE;
-  move: string;
-}
-
 export interface IInitOwnField {
   type: EGameActionTypes.INIT_OWN_FIELD;
 }
@@ -33,11 +28,25 @@ export interface IHideOpponentField {
   type: EGameActionTypes.HIDE_OPPONENT_FIELD;
 }
 
+// flow
+export interface ISendSpell {
+  type: EGameActionTypes.SEND_SPELL;
+  spellAction: Object;
+}
+
+// spells
+export interface IDestroyOwnCell {
+  type: EGameActionTypes.DESTROY_OWN_CELL;
+  column: number;
+  row: number;
+}
+
 export type TGameAction =
   | IInitSingleGame
   | IInitOnlineGame
-  | IMakeMove
   | IInitOwnField
   | ISetOwnField
   | IShowOpponentField
-  | IHideOpponentField;
+  | IHideOpponentField
+  // spells
+  | IDestroyOwnCell;

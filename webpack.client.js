@@ -9,7 +9,7 @@ module.exports = {
   ...sharedConfig,
 
   target: 'web',
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   entry: ['./src/index.jsx', './src/styles/index.scss'],
   output: {
     path: path.resolve(__dirname, 'dist/public'),

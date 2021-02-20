@@ -9,7 +9,12 @@ export function createDuplexConnection() {
 
   function subscribe(emitter: Function) {
     socket.on(ESocketEvents.OPPONENT_FOUND, emitter);
-    return () => socket.off(ESocketEvents.PLAYER_MOVE, emitter);
+    socket.on(ESocketEvents.RECEIVE_SPELL, emitter);
+
+    return () => {
+      socket.off(ESocketEvents.OPPONENT_FOUND, emitter);
+      socket.off(ESocketEvents.RECEIVE_SPELL, emitter);
+    };
   }
 
   return { channel: eventChannel(subscribe), socket };

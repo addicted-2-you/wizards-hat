@@ -24,6 +24,7 @@ function* initSingleGameWorker() {
 function* listeningSocketWorker(channel: EventChannel<unknown>) {
   while (true) {
     const anotherMoveAction = yield take(channel);
+
     yield put(anotherMoveAction);
   }
 }
@@ -45,12 +46,12 @@ export function* watchOnlineGame() {
     const { channel, socket } = yield call(createDuplexConnection);
     const listeningSocketTask = yield fork(listeningSocketWorker, channel);
 
-    const watchingActions = [EGameActionTypes.MAKE_MOVE, EGameActionTypes.LEAVE_ONLINE_GAME];
+    const watchingActions = [EGameActionTypes.SEND_SPELL, EGameActionTypes.LEAVE_ONLINE_GAME];
     for (let action = yield take(watchingActions); action; action = yield take(watchingActions)) {
-      if (action.type === EGameActionTypes.MAKE_MOVE) {
-        socket.emit(ESocketEvents.PLAYER_MOVE, action);
+      if (action.type === EGameActionTypes.SEND_SPELL) {
+        socket.emit(ESocketEvents.SEND_SPELL, action.spellAction);
       } else if (action.type === EGameActionTypes.LEAVE_ONLINE_GAME) {
-        cancel(listeningSocketTask);
+        yield cancel(listeningSocketTask);
         break;
       }
     }

@@ -13,14 +13,15 @@ export interface IToggleTerminal {
   type: ETerminalActionTypes.TOGGLE_TERMINAL;
 }
 
-export interface ICastSpell {
-  type: ETerminalActionTypes.CAST_SPELL;
-  spell: string;
-}
-
 export interface IAddToHistory {
   type: ETerminalActionTypes.ADD_TO_HISTORY;
   command: string;
+}
+
+// flow
+export interface ICastSpell {
+  type: ETerminalActionTypes.CAST_SPELL;
+  spell: string;
 }
 
 export type TTerminalAction =

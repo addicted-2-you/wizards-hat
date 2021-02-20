@@ -11,11 +11,6 @@ export const initOnlneGame = (): GameActions.IInitOnlineGame => ({
   type: EGameActionTypes.INIT_ONLINE_GAME,
 });
 
-export const makeMove = (move: string): GameActions.IMakeMove => ({
-  type: EGameActionTypes.MAKE_MOVE,
-  move,
-});
-
 export const initOwnField = (): GameActions.IInitOwnField => ({
   type: EGameActionTypes.INIT_OWN_FIELD,
 });
@@ -32,4 +27,17 @@ export const showOpponentField = (): GameActions.IShowOpponentField => ({
 
 export const hideOpponentField = (): GameActions.IHideOpponentField => ({
   type: EGameActionTypes.HIDE_OPPONENT_FIELD,
+});
+
+// flow
+export const sendSpell = (spellAction: Object): GameActions.ISendSpell => ({
+  type: EGameActionTypes.SEND_SPELL,
+  spellAction,
+});
+
+// spells
+export const destroyOwnCell = (column: number, row: number): GameActions.IDestroyOwnCell => ({
+  type: EGameActionTypes.DESTROY_OWN_CELL,
+  column,
+  row,
 });
