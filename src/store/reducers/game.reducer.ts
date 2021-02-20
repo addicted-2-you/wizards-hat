@@ -6,8 +6,13 @@ export default (state: IGameState = gameInitState, action: TGameAction): IGameSt
   switch (action.type) {
     case EGameActionTypes.SET_OWN_FIELD: {
       const { ownField } = action;
-
       return { ...state, ownField };
+    }
+    case EGameActionTypes.SHOW_OPPONENT_FIELD: {
+      return { ...state, isOpponentsFieldVisible: true };
+    }
+    case EGameActionTypes.HIDE_OPPONENT_FIELD: {
+      return { ...state, isOpponentsFieldVisible: false };
     }
     default: {
       return state;

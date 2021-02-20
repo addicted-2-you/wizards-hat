@@ -13,13 +13,14 @@ import { ESocketEvents } from 'constants/ws.events';
 import { CUserConnection } from 'models/CUserConnection';
 
 import { store } from 'store';
-import { hideSpinner } from 'store/action-creators/app.action-creators';
+import { setAppStage } from 'store/action-creators/app.action-creators';
 
 import { addResponseHeaders } from './middlewares';
 
 import { readFile } from './utils';
 
 import App from '../App';
+import { EAppStages } from 'constants/EAppStages';
 
 // express stuff
 const PORT = process.env.PORT || 3000;
@@ -62,8 +63,12 @@ io.on('connection', (socket: Socket) => {
     unpairedSocket.pair = newUser;
     newUser.pair = unpairedSocket;
 
-    unpairedSocket.socket.emit(ESocketEvents.OPPONENT_FOUND, hideSpinner());
-    newUser.socket.emit(ESocketEvents.OPPONENT_FOUND, hideSpinner());
+    unpairedSocket.socket.emit(
+      ESocketEvents.OPPONENT_FOUND,
+      setAppStage(EAppStages.GAME_IN_PROGRESS),
+    );
+
+    newUser.socket.emit(ESocketEvents.OPPONENT_FOUND, setAppStage(EAppStages.GAME_IN_PROGRESS));
   }
 
   sockets[socket.id] = newUser;

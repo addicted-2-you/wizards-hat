@@ -4,16 +4,18 @@ import { appInitState, IAppState } from '../init-states/app';
 
 export default (state: IAppState = appInitState, action: TAppAction): IAppState => {
   switch (action.type) {
-    case EAppActionTypes.HIDE_MENU: {
-      return { ...state, isMenuVisible: false };
-    }
+    // menu
     case EAppActionTypes.SHOW_MENU: {
+      return { ...state, isMenuVisible: true };
+    }
+    case EAppActionTypes.HIDE_MENU: {
       return { ...state, isMenuVisible: false };
     }
     case EAppActionTypes.TOGGLE_MENU: {
       const { isMenuVisible } = state;
       return { ...state, isMenuVisible: !isMenuVisible };
     }
+    // spinner
     case EAppActionTypes.SHOW_SPINNER: {
       return { ...state, isSpinnerVisible: true };
     }

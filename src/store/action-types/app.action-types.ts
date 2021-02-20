@@ -1,4 +1,6 @@
 export enum EAppActionTypes {
+  // game modes
+  SET_APP_STAGE = 'APP@SET_APP_STAGE',
   // main menu
   HIDE_MENU = 'APP@HIDE_MENU',
   SHOW_MENU = 'APP@SHOW_MENU',

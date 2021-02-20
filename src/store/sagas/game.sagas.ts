@@ -19,8 +19,8 @@ function* initSingleGameWorker() {
 
 function* listeningSocketWorker(channel: EventChannel<unknown>) {
   while (true) {
-    const anotherMove = yield take(channel);
-    yield put(anotherMove);
+    const anotherMoveAction = yield take(channel);
+    yield put(anotherMoveAction);
   }
 }
 

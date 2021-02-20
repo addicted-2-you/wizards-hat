@@ -8,6 +8,7 @@ import gameReducer from './reducers/game.reducer';
 import terminalReducer from './reducers/terminal.reducer';
 
 // sagas
+import { watchChangeAppStage } from './sagas/app.sagas';
 import { watchOnlineGame, watchInitSingleGame } from './sagas/game.sagas';
 import { watchSpelling } from './sagas/terminal.sagas';
 
@@ -21,6 +22,9 @@ const sagaMiddleware = createSagaMiddleware();
 const rootMiddleware = composeWithDevTools(applyMiddleware(sagaMiddleware));
 
 const store = createStore(rootReducer, rootMiddleware);
+
+// app sagas
+sagaMiddleware.run(watchChangeAppStage);
 
 // game sagas
 sagaMiddleware.run(watchInitSingleGame);

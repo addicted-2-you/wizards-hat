@@ -24,9 +24,20 @@ export interface ISetOwnField {
   ownField: CFieldCell[];
 }
 
+// UI elements visibility
+export interface IShowOpponentField {
+  type: EGameActionTypes.SHOW_OPPONENT_FIELD;
+}
+
+export interface IHideOpponentField {
+  type: EGameActionTypes.HIDE_OPPONENT_FIELD;
+}
+
 export type TGameAction =
   | IInitSingleGame
   | IInitOnlineGame
   | IMakeMove
   | IInitOwnField
-  | ISetOwnField;
+  | ISetOwnField
+  | IShowOpponentField
+  | IHideOpponentField;

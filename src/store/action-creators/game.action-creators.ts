@@ -24,3 +24,12 @@ export const setOwnField = (ownField: CFieldCell[]): GameActions.ISetOwnField =>
   type: EGameActionTypes.SET_OWN_FIELD,
   ownField,
 });
+
+// UI elements visibility
+export const showOpponentField = (): GameActions.IShowOpponentField => ({
+  type: EGameActionTypes.SHOW_OPPONENT_FIELD,
+});
+
+export const hideOpponentField = (): GameActions.IHideOpponentField => ({
+  type: EGameActionTypes.HIDE_OPPONENT_FIELD,
+});

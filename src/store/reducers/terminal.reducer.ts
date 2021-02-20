@@ -7,6 +7,13 @@ export default (
   action: TTerminalAction,
 ): ITerminalState => {
   switch (action.type) {
+    // terminal visibility
+    case ETerminalActionTypes.SHOW_TERMINAL: {
+      return { ...state, isTerminalVisible: true };
+    }
+    case ETerminalActionTypes.HIDE_TERMINAL: {
+      return { ...state, isTerminalVisible: false };
+    }
     case ETerminalActionTypes.TOGGLE_TERMINAL: {
       const { isTerminalVisible } = state;
 
