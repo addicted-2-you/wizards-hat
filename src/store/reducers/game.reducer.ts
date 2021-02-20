@@ -1,4 +1,5 @@
 import { CFieldCell } from 'models/CFieldCell';
+
 import { EGameActionTypes } from 'store/action-types/game.action-types';
 import { TGameAction } from 'store/actions/game.actions';
 import { gameInitState, IGameState } from 'store/init-states/game';
@@ -14,6 +15,11 @@ export default (state: IGameState = gameInitState, action: TGameAction): IGameSt
     }
     case EGameActionTypes.HIDE_OPPONENT_FIELD: {
       return { ...state, isOpponentsFieldVisible: false };
+    }
+    // flow
+    case EGameActionTypes.SET_GAME_STATUS: {
+      const { gameStatus } = action;
+      return { ...state, gameStatus };
     }
     // spells
     case EGameActionTypes.DESTROY_OWN_CELL: {

@@ -2,6 +2,7 @@ import { COUNT_CASTLE_SIZE, GAME_FIELD_SIZE } from 'constants/game.constants';
 
 import { CCountCastle } from 'models/buildings/CCountCastle';
 import { CFieldCell } from 'models/CFieldCell';
+import { EGameStatuses } from 'models/EGameStatuses';
 
 import { getRandomNumberInInterval } from './math.utils';
 
@@ -49,4 +50,12 @@ export function placeCountCastle(gameField: CFieldCell[]): CFieldCell[] {
 
 export function generateOwnGameField(gameFieldSize = GAME_FIELD_SIZE): CFieldCell[] {
   return placeCountCastle(generateEmptyGameField(gameFieldSize));
+}
+
+export function getGameOverMessage(gameStatus: EGameStatuses): { className: string; text: string } {
+  if (gameStatus === EGameStatuses.WON) {
+    return { className: 'game-over-message--victory', text: 'You won !' };
+  }
+
+  return { className: 'game-over-message--lose', text: 'You lose !' };
 }

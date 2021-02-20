@@ -40,6 +40,14 @@ export class CFieldCell {
     this.building = building;
   }
 
+  hasNonDestroyedBuilding(): boolean {
+    if (!(this.building instanceof CEmptyBuilding)) {
+      return !this.isDestroyed;
+    }
+
+    return true;
+  }
+
   render(content: JSX.Element | string): JSX.Element {
     return (
       <div className={getGameCellClassName(this.isDestroyed)} key={`${this.xCoord}-${this.yCoord}`}>

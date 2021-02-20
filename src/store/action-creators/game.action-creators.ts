@@ -1,4 +1,5 @@
 import { CFieldCell } from 'models/CFieldCell';
+import { EGameStatuses } from 'models/EGameStatuses';
 
 import { EGameActionTypes } from 'store/action-types/game.action-types';
 import * as GameActions from 'store/actions/game.actions';
@@ -33,6 +34,11 @@ export const hideOpponentField = (): GameActions.IHideOpponentField => ({
 export const sendSpell = (spellAction: Object): GameActions.ISendSpell => ({
   type: EGameActionTypes.SEND_SPELL,
   spellAction,
+});
+
+export const setGameStatus = (gameStatus: EGameStatuses): GameActions.ISetGameStatus => ({
+  type: EGameActionTypes.SET_GAME_STATUS,
+  gameStatus,
 });
 
 // spells

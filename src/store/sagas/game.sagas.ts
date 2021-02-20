@@ -1,14 +1,15 @@
 import { EventChannel } from 'redux-saga';
-import { call, cancel, fork, put, take, takeEvery } from 'redux-saga/effects';
+import { call, cancel, fork, put, select, take, takeEvery } from 'redux-saga/effects';
 
 import { ESocketEvents } from 'constants/ws.events';
 
 import { hideMenu, showSpinner } from 'store/action-creators/app.action-creators';
-import { setOwnField } from 'store/action-creators/game.action-creators';
+import { setOwnField, setGameStatus } from 'store/action-creators/game.action-creators';
 import { EGameActionTypes } from 'store/action-types/game.action-types';
 
 import { generateOwnGameField } from 'utils/game.utils';
 import { createDuplexConnection } from 'utils/socket.utils';
+import { EGameStatuses } from 'models/EGameStatuses';
 
 // workers
 function* initGameWorker() {
@@ -24,8 +25,18 @@ function* initSingleGameWorker() {
 function* listeningSocketWorker(channel: EventChannel<unknown>) {
   while (true) {
     const anotherMoveAction = yield take(channel);
-
     yield put(anotherMoveAction);
+  }
+}
+
+function* checkGameStatusWorker() {
+  const {
+    gameState: { ownField },
+  } = yield select();
+
+  const nonDestroyedBuilding = ownField.find((cell) => cell.hasNonDestroyedBuilding());
+  if (!nonDestroyedBuilding) {
+    yield put(setGameStatus(EGameStatuses.LOSE));
   }
 }
 
@@ -46,6 +57,8 @@ export function* watchOnlineGame() {
     const { channel, socket } = yield call(createDuplexConnection);
     const listeningSocketTask = yield fork(listeningSocketWorker, channel);
 
+    yield put(setGameStatus(EGameStatuses.IN_PROGRESS));
+
     const watchingActions = [EGameActionTypes.SEND_SPELL, EGameActionTypes.LEAVE_ONLINE_GAME];
     for (let action = yield take(watchingActions); action; action = yield take(watchingActions)) {
       if (action.type === EGameActionTypes.SEND_SPELL) {
@@ -56,4 +69,9 @@ export function* watchOnlineGame() {
       }
     }
   }
+}
+
+export function* watchGameStatus() {
+  const watchingActions = [EGameActionTypes.DESTROY_OWN_CELL];
+  yield takeEvery(watchingActions, checkGameStatusWorker);
 }

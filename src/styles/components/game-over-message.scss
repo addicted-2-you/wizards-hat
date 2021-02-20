@@ -1,0 +1,38 @@
+@import '~styles/shared/colors.scss';
+@import '~styles/shared/mixins.scss';
+
+.game-over-message-wrapper {
+  @include flex-center-content;
+
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding-top: 2.5vw;
+
+  background-color: rgba($mistress-night, 0.65);
+  transform: translateY(100%);
+  transition: transform 0.35s ease-in-out;
+
+  &--active {
+    @extend .game-over-message-wrapper;
+
+    transform: translateY(-100%);
+  }
+
+  .game-over-message {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+
+    &--victory {
+      @extend .game-over-message;
+
+      color: limegreen;
+    }
+
+    &--lose {
+      @extend .game-over-message;
+
+      color: crimson;
+    }
+  }
+}

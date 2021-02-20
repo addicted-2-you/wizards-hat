@@ -1,4 +1,5 @@
 import { CFieldCell } from 'models/CFieldCell';
+import { EGameStatuses } from 'models/EGameStatuses';
 
 import { EGameActionTypes } from 'store/action-types/game.action-types';
 
@@ -34,6 +35,11 @@ export interface ISendSpell {
   spellAction: Object;
 }
 
+export interface ISetGameStatus {
+  type: EGameActionTypes.SET_GAME_STATUS;
+  gameStatus: EGameStatuses;
+}
+
 // spells
 export interface IDestroyOwnCell {
   type: EGameActionTypes.DESTROY_OWN_CELL;
@@ -48,5 +54,8 @@ export type TGameAction =
   | ISetOwnField
   | IShowOpponentField
   | IHideOpponentField
+  // flow
+  | ISendSpell
+  | ISetGameStatus
   // spells
   | IDestroyOwnCell;
