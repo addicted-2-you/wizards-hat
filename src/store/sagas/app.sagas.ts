@@ -6,6 +6,7 @@ import { hideMenu, hideSpinner, showSpinner } from 'store/action-creators/app.ac
 import { EAppActionTypes } from 'store/action-types/app.action-types';
 import { ISetGameMode } from 'store/actions/app.actions';
 import { hideTerminal, showTerminal } from 'store/action-creators/terminal.action-creators';
+import { showOpponentField } from 'store/action-creators/game.action-creators';
 
 function* changeAppStageWorker(action: ISetGameMode) {
   if (action.appStage === EAppStages.APP_START) {
@@ -18,6 +19,7 @@ function* changeAppStageWorker(action: ISetGameMode) {
   } else if (action.appStage === EAppStages.GAME_IN_PROGRESS) {
     yield put(hideSpinner());
     yield put(showTerminal());
+    yield put(showOpponentField());
   }
 }
 

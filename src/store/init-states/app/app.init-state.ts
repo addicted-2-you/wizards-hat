@@ -1,6 +1,6 @@
 import { IAppState } from './app.state-type';
 
 export const appInitState: IAppState = {
-  isMenuVisible: false,
+  isMenuVisible: true,
   isSpinnerVisible: false,
 };

@@ -23,6 +23,23 @@ $game-field-cell-gap: calc(#{$game-field-cell-size} / 4);
   font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
   font-size: calc(#{$game-field-cell-size} / 2);
 
+  &--opponent {
+    @extend .game-field;
+
+    display: none;
+
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+
+    &--active {
+      @extend .game-field--opponent;
+
+      display: block;
+
+      transform: translateX(0);
+    }
+  }
+
   .game-field-x-axis {
     display: flex;
 

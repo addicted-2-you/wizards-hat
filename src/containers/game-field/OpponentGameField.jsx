@@ -8,27 +8,9 @@ import {
   selectOpponentsGameFieldVisibility,
 } from 'store/selectors/game.selectors';
 
-function getOpponentGameFieldClassName(opponentGameFieldVisibility) {
-  if (opponentGameFieldVisibility) {
-    return 'opponent-game-field-wrapper--active';
-  }
-
-  return 'opponent-game-field-wrapper';
-}
-
-function OpponentGameField(props) {
-  const { opponentGameFieldVisibility } = props;
-
-  return (
-    <div className={getOpponentGameFieldClassName(opponentGameFieldVisibility)}>
-      <GameField {...props} />
-    </div>
-  );
-}
-
 const mapStateToProps = (store) => ({
   gameFieldData: selectOpponentsGameField(store),
   opponentGameFieldVisibility: selectOpponentsGameFieldVisibility(store),
 });
 
-export default connect(mapStateToProps)(OpponentGameField);
+export default connect(mapStateToProps)(GameField);
