@@ -1,5 +1,5 @@
 import { CFieldCell } from 'models/CFieldCell';
-import { EGameStatuses } from 'models/EGameStatuses';
+import { EGameStages } from 'models/EGameStages';
 
 import { EGameActionTypes } from 'store/action-types/game.action-types';
 import * as GameActions from 'store/actions/game.actions';
@@ -31,14 +31,31 @@ export const hideOpponentField = (): GameActions.IHideOpponentField => ({
 });
 
 // flow
+export const sendAction = (action: Object) => ({
+  type: EGameActionTypes.SEND_ACTION,
+  action,
+});
+
 export const sendSpell = (spellAction: Object): GameActions.ISendSpell => ({
   type: EGameActionTypes.SEND_SPELL,
   spellAction,
 });
 
-export const setGameStatus = (gameStatus: EGameStatuses): GameActions.ISetGameStatus => ({
+export const setGameStatus = (gameStage: EGameStages): GameActions.ISetGameStatus => ({
   type: EGameActionTypes.SET_GAME_STATUS,
-  gameStatus,
+  gameStage,
+});
+
+export const setIsCurrentUserTurn = (
+  isCurrentUserTurn: boolean,
+): GameActions.ISetIsCurrentUserTurn => ({
+  type: EGameActionTypes.SET_IS_CURRENT_USER_TURN,
+  isCurrentUserTurn,
+});
+
+export const setSecondsLeft = (secondsLeft: number): GameActions.ISetSecondsLeft => ({
+  type: EGameActionTypes.SET_SECONDS_LEFT,
+  secondsLeft,
 });
 
 // spells

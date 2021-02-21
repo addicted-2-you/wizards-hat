@@ -1,2 +1,4 @@
-$app-header-height: 7vh;
+$app-header-line-height: 7vh;
+$app-header-height: $app-header-line-height * 2;
+
 $app-footer-height: 5vh;

@@ -1,9 +1,11 @@
 import { CFieldCell } from 'models/CFieldCell';
-import { EGameStatuses } from 'models/EGameStatuses';
+import { EGameStages } from 'models/EGameStages';
 
 export interface IGameState {
   ownField: CFieldCell[];
   opponentsField: CFieldCell[];
   isOpponentsFieldVisible: boolean;
-  gameStatus: EGameStatuses;
+  gameStage: EGameStages;
+  isCurrentUserTurn: boolean;
+  secondsLeft: number;
 }

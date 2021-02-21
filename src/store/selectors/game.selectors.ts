@@ -1,5 +1,5 @@
 import { CFieldCell } from 'models/CFieldCell';
-import { EGameStatuses } from 'models/EGameStatuses';
+import { EGameStages } from 'models/EGameStages';
 
 import { TStore } from 'store';
 
@@ -11,4 +11,9 @@ export const selectOpponentsGameField = (store: TStore): CFieldCell[] =>
 export const selectOpponentsGameFieldVisibility = (store: TStore): boolean =>
   store.gameState.isOpponentsFieldVisible;
 
-export const selectGameStatus = (store: TStore): EGameStatuses => store.gameState.gameStatus;
+export const selectGameStage = (store: TStore): EGameStages => store.gameState.gameStage;
+
+export const selectIsCurrentUserTurn = (store: TStore): boolean =>
+  store.gameState.isCurrentUserTurn;
+
+export const selectSecondsLeft = (store: TStore): number => store.gameState.secondsLeft;

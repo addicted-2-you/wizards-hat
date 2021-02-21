@@ -7,8 +7,7 @@ import { gameInitState, IGameState } from 'store/init-states/game';
 export default (state: IGameState = gameInitState, action: TGameAction): IGameState => {
   switch (action.type) {
     case EGameActionTypes.SET_OWN_FIELD: {
-      const { ownField } = action;
-      return { ...state, ownField };
+      return { ...state, ownField: action.ownField };
     }
     case EGameActionTypes.SHOW_OPPONENT_FIELD: {
       return { ...state, isOpponentsFieldVisible: true };
@@ -18,8 +17,13 @@ export default (state: IGameState = gameInitState, action: TGameAction): IGameSt
     }
     // flow
     case EGameActionTypes.SET_GAME_STATUS: {
-      const { gameStatus } = action;
-      return { ...state, gameStatus };
+      return { ...state, gameStage: action.gameStage };
+    }
+    case EGameActionTypes.SET_IS_CURRENT_USER_TURN: {
+      return { ...state, isCurrentUserTurn: action.isCurrentUserTurn };
+    }
+    case EGameActionTypes.SET_SECONDS_LEFT: {
+      return { ...state, secondsLeft: action.secondsLeft };
     }
     // spells
     case EGameActionTypes.DESTROY_OWN_CELL: {

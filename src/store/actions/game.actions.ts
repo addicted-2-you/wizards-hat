@@ -1,5 +1,5 @@
 import { CFieldCell } from 'models/CFieldCell';
-import { EGameStatuses } from 'models/EGameStatuses';
+import { EGameStages } from 'models/EGameStages';
 
 import { EGameActionTypes } from 'store/action-types/game.action-types';
 
@@ -37,7 +37,17 @@ export interface ISendSpell {
 
 export interface ISetGameStatus {
   type: EGameActionTypes.SET_GAME_STATUS;
-  gameStatus: EGameStatuses;
+  gameStage: EGameStages;
+}
+
+export interface ISetIsCurrentUserTurn {
+  type: EGameActionTypes.SET_IS_CURRENT_USER_TURN;
+  isCurrentUserTurn: boolean;
+}
+
+export interface ISetSecondsLeft {
+  type: EGameActionTypes.SET_SECONDS_LEFT;
+  secondsLeft: number;
 }
 
 // spells
@@ -57,5 +67,7 @@ export type TGameAction =
   // flow
   | ISendSpell
   | ISetGameStatus
+  | ISetIsCurrentUserTurn
+  | ISetSecondsLeft
   // spells
   | IDestroyOwnCell;

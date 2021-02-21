@@ -15,10 +15,12 @@ import { CUserConnection } from 'models/CUserConnection';
 
 import { store } from 'store';
 import { setAppStage } from 'store/action-creators/app.action-creators';
+import { setIsCurrentUserTurn } from 'store/action-creators/game.action-creators';
+
+import { tossCoin } from 'utils/core.utils';
+import { readFile } from 'utils/server.utils';
 
 import { addResponseHeaders } from './middlewares';
-
-import { readFile } from './utils';
 
 import App from '../App';
 
@@ -69,6 +71,16 @@ io.on('connection', (socket: Socket) => {
     );
 
     newUser.socket.emit(ESocketEvents.OPPONENT_FOUND, setAppStage(EAppStages.GAME_IN_PROGRESS));
+
+    // decide who makes first turn
+    const newUserMakesFirstTurn = tossCoin();
+
+    unpairedSocket.socket.emit(
+      ESocketEvents.OPPONENT_FOUND,
+      setIsCurrentUserTurn(!newUserMakesFirstTurn),
+    );
+
+    newUser.socket.emit(ESocketEvents.OPPONENT_FOUND, setIsCurrentUserTurn(newUserMakesFirstTurn));
   }
 
   sockets[socket.id] = newUser;

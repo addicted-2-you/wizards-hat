@@ -6,8 +6,8 @@
   $self: &;
 
   position: absolute;
-  top: $app-header-height;
-  height: calc(100vh - (#{$app-header-height} + #{$app-footer-height}));
+  top: $app-header-line-height;
+  height: calc(100vh - (#{$app-header-line-height} + #{$app-footer-height}));
   width: 100vw;
 
   display: flex;

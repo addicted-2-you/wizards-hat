@@ -14,6 +14,7 @@ import {
   watchInitSingleGame,
   watchInitOwnField,
   watchGameStatus,
+  watchSettingCurrentUserTurn,
 } from './sagas/game.sagas';
 import { watchSpelling } from './sagas/terminal.sagas';
 
@@ -36,6 +37,7 @@ sagaMiddleware.run(watchInitOwnField);
 sagaMiddleware.run(watchInitSingleGame);
 sagaMiddleware.run(watchOnlineGame);
 sagaMiddleware.run(watchGameStatus);
+sagaMiddleware.run(watchSettingCurrentUserTurn);
 
 // terminal sagas
 sagaMiddleware.run(watchSpelling);

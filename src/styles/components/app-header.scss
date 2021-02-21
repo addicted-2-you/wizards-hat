@@ -1,35 +1,69 @@
 @import 'styles/shared/colors.scss';
 @import 'styles/shared/fonts.scss';
+@import 'styles/shared/mixins.scss';
 @import 'styles/shared/sizes/constants.scss';
 
 .app-header {
-  height: $app-header-height;
+  $app-header: &;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  > * {
+    @include flex-center-content;
 
-  background-color: $mistress-night;
+    height: $app-header-line-height;
+  }
 
-  &__main-menu-button {
-    position: absolute;
-    left: 1vw;
-    height: 2.4rem;
-    width: 2.4rem;
+  &-title-line {
+    background-color: $mistress-night;
 
-    opacity: 0.75;
-    background: no-repeat center/55% url(~assets/images/menu.svg);
+    #{$app-header}__main-menu-button {
+      position: absolute;
+      left: 1vw;
+      height: 2.4rem;
+      width: 2.4rem;
 
-    &:hover {
-      opacity: 1;
+      opacity: 0.75;
+      background: no-repeat center/55% url(~assets/images/menu.svg);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    #{$app-header}__title {
+      font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
+      font-size: 2.35rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+      color: $under-the-sun;
     }
   }
 
-  &__title {
-    font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
-    font-size: 2.35rem;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    color: $under-the-sun;
+  &-timer-line {
+    #{$app-header}__timer {
+      opacity: 0;
+
+      font-family: 'Swanky and Moo Moo', Calibri, sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.2rem;
+      text-transform: uppercase;
+
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    #{$app-header}__timer--own-turn {
+      @extend #{$app-header}__timer;
+
+      color: green;
+
+      opacity: 1;
+    }
+
+    #{$app-header}__timer--opponent-turn {
+      @extend #{$app-header}__timer;
+
+      color: crimson;
+
+      opacity: 1;
+    }
   }
 }
