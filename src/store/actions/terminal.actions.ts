@@ -13,9 +13,16 @@ export interface IToggleTerminal {
   type: ETerminalActionTypes.TOGGLE_TERMINAL;
 }
 
-export interface IAddToHistory {
-  type: ETerminalActionTypes.ADD_TO_HISTORY;
-  command: string;
+export interface IFocusTerminal {
+  type: ETerminalActionTypes.FOCUS_TERMINAL;
+}
+
+export interface IUnfocusTerminal {
+  type: ETerminalActionTypes.UNFOCUS_TERMINAL;
+}
+
+export interface IToggleTerminalFocus {
+  type: ETerminalActionTypes.TOGGLE_TERMINAL_FOCUS;
 }
 
 // flow
@@ -24,9 +31,19 @@ export interface ICastSpell {
   spell: string;
 }
 
+export interface IAddToHistory {
+  type: ETerminalActionTypes.ADD_TO_HISTORY;
+  command: string;
+}
+
 export type TTerminalAction =
+  // terimnal visibility
   | IShowTerminal
   | IHideTerminal
   | IToggleTerminal
+  | IFocusTerminal
+  | IUnfocusTerminal
+  | IToggleTerminalFocus
+  // flow
   | ICastSpell
   | IAddToHistory;

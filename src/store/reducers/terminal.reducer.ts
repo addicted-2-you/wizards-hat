@@ -15,15 +15,20 @@ export default (
       return { ...state, isTerminalVisible: false };
     }
     case ETerminalActionTypes.TOGGLE_TERMINAL: {
-      const { isTerminalVisible } = state;
-
-      return { ...state, isTerminalVisible: !isTerminalVisible };
+      return { ...state, isTerminalVisible: !state.isTerminalVisible };
     }
+    case ETerminalActionTypes.FOCUS_TERMINAL: {
+      return { ...state, isTerminalFocused: true };
+    }
+    case ETerminalActionTypes.UNFOCUS_TERMINAL: {
+      return { ...state, isTerminalFocused: false };
+    }
+    case ETerminalActionTypes.TOGGLE_TERMINAL_FOCUS: {
+      return { ...state, isTerminalFocused: !state.isTerminalFocused };
+    }
+    // flow
     case ETerminalActionTypes.ADD_TO_HISTORY: {
-      const { history } = state;
-      const { command } = action;
-
-      return { ...state, history: [...history, command] };
+      return { ...state, history: [...state.history, action.command] };
     }
     default: {
       return state;
